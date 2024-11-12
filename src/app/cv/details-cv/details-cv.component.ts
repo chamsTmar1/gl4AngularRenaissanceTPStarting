@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTES } from '../../../config/routes.config';
 import { AuthService } from '../../auth/services/auth.service';
-import { NgIf } from '@angular/common';
+
 import { DefaultImagePipe } from '../pipes/default-image.pipe';
 
 @Component({
@@ -13,7 +13,7 @@ import { DefaultImagePipe } from '../pipes/default-image.pipe';
     templateUrl: './details-cv.component.html',
     styleUrls: ['./details-cv.component.css'],
     standalone: true,
-    imports: [NgIf, DefaultImagePipe],
+    imports: [DefaultImagePipe],
 })
 export class DetailsCvComponent implements OnInit {
   cv: Cv | null = null;

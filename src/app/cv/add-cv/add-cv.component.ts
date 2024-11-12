@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { APP_ROUTES } from "src/config/routes.config";
 import { Cv } from "../model/cv";
-import { NgIf, JsonPipe } from "@angular/common";
+import { JsonPipe } from "@angular/common";
 
 @Component({
     selector: "app-add-cv",
@@ -13,11 +13,10 @@ import { NgIf, JsonPipe } from "@angular/common";
     styleUrls: ["./add-cv.component.css"],
     standalone: true,
     imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        NgIf,
-        JsonPipe,
-    ],
+    FormsModule,
+    ReactiveFormsModule,
+    JsonPipe
+],
 })
 export class AddCvComponent {
   constructor(
