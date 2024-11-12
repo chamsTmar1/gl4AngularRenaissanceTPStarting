@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CredentialsDto } from '../dto/credentials.dto';
 import { ROUTES, Router } from '@angular/router';
@@ -15,11 +15,10 @@ import { FormsModule } from '@angular/forms';
     imports: [FormsModule],
 })
 export class LoginComponent {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private toastr: ToastrService
-  ) {}
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private toastr = inject(ToastrService);
+
   login(credentials: CredentialsDto) {
     this.authService.login(credentials).subscribe({
       next: (response) => {

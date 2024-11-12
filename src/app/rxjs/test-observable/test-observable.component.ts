@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, inject } from "@angular/core";
 import { Observable, Subscription, filter, map } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 
@@ -9,9 +9,11 @@ import { ToastrService } from "ngx-toastr";
     standalone: true,
 })
 export class TestObservableComponent {
+  private toaster = inject(ToastrService);
+
   firstObservable$: Observable<number>;
 
-  constructor(private toaster: ToastrService) {
+  constructor() {
     this.firstObservable$ = new Observable((observer) => {
       let i = 5;
       setInterval(() => {
