@@ -3,7 +3,7 @@ import { CredentialsDto } from '../dto/credentials.dto';
 import { LoginResponseDto } from '../dto/login-response.dto';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../../../config/api.config';
-import { map, Observable, of, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { CONSTANTES } from 'src/config/const.config';
 
 interface UserState {
@@ -38,26 +38,35 @@ export class AuthService {
           userId: response.userId.toString(),
           email: credentials.email,
         };
-        localStorage.setItem(CONSTANTES.tokenKey, response.id);
-        localStorage.setItem(
-          CONSTANTES.userData,
-          JSON.stringify({ userId: response.userId, email: credentials.email })
-        );
-        this.userState.set(userState);
+        this.setUserState(userState);
         return response;
       })
     );
 
-    logout$ = (): Observable<void> =>
-      of(undefined).pipe(
-        tap(() => {
-          localStorage.removeItem(CONSTANTES.tokenKey);
-          localStorage.removeItem(CONSTANTES.userData);
-    
-          this.userState.set({ token: null, userId: null, email: null });
-        })
-      );
-    
+  logout$ = (): Observable<void> =>
+    of(undefined).pipe(
+      tap(() => {
+        this.clearUserState();
+      })
+    );
+
+  private setUserState(userState: UserState) {
+    localStorage.setItem(CONSTANTES.tokenKey, userState.token!);
+    localStorage.setItem(
+      CONSTANTES.userData,
+      JSON.stringify({
+        userId: userState.userId,
+        email: userState.email,
+      })
+    );
+    this.userState.set(userState);
+  }
+
+  private clearUserState() {
+    localStorage.removeItem(CONSTANTES.tokenKey);
+    localStorage.removeItem(CONSTANTES.userData);
+    this.userState.set({ token: null, userId: null, email: null });
+  }
 
   private loadUserState() {
     const token = localStorage.getItem(CONSTANTES.tokenKey);
