@@ -4,6 +4,7 @@ import { LoginResponseDto } from '../dto/login-response.dto';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../../../config/api.config';
 import { Observable } from 'rxjs';
+import { CONSTANTES } from 'src/config/const.config';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +18,10 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem(CONSTANTES.tokenKey);
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem(CONSTANTES.tokenKey);
   }
 }
