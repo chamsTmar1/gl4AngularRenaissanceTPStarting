@@ -6,7 +6,7 @@ import { CONSTANTES } from 'src/config/const.config';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   
-  if (authService.isAuthenticated()) {
+  if (authService.authenticated()) {
     const token = localStorage.getItem(CONSTANTES.tokenKey) ?? '';
     const clonedRequest = req.clone({
       setHeaders: {
