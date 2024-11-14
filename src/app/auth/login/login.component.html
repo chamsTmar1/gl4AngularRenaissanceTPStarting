@@ -17,4 +17,5 @@
       </div>
       <button (click)="login(loginForm.value)" [disabled]="loginForm.invalid" type="submit"
       class="btn btn-primary">Submit</button>
+      <div style="display: none;">{{loginResult$ | async}}</div>
     </form>

@@ -39,7 +39,6 @@ export class AuthService {
           email: credentials.email,
         };
         this.setUserState(userState);
-        return response;
       })
     );
 
