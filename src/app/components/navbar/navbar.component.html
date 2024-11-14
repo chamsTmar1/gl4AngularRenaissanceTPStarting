@@ -67,6 +67,12 @@
           >Rh</a
         >
         <a
+          class="nav-link"
+          [routerLink]="['ttc']"
+          routerLinkActive="active text-primary"
+          >TTC Calculator</a
+        >
+        <a
           *ngIf="!authService.isAuthenticated()"
           class="nav-link"
           [routerLink]="['login']"
