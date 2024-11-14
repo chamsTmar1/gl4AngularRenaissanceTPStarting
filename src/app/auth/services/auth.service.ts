@@ -3,7 +3,7 @@ import { CredentialsDto } from '../dto/credentials.dto';
 import { LoginResponseDto } from '../dto/login-response.dto';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../../../config/api.config';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, of, tap } from 'rxjs';
 import { CONSTANTES } from 'src/config/const.config';
 
 interface UserState {
@@ -18,45 +18,51 @@ interface UserState {
 export class AuthService {
   private http = inject(HttpClient);
 
-    userState = signal<UserState>({
-      token: null,
-      userId: null,
-      email: null,
-    });
-  
-    authenticated = computed(() => !!this.userState().token);
+  userState = signal<UserState>({
+    token: null,
+    userId: null,
+    email: null,
+  });
 
-    constructor() {
-      this.loadUserState();
-    }
+  authenticated = computed(() => !!this.userState().token);
 
-    login(credentials: CredentialsDto): Observable<LoginResponseDto> {
-      return this.http.post<LoginResponseDto>(API.login, credentials).pipe(
-        tap(response => {
-          const userState: UserState = {
-            token: response.id,
-            userId: response.userId.toString(),
-            email: credentials.email,
-          };
-          
-          localStorage.setItem(CONSTANTES.tokenKey, response.id);
-          localStorage.setItem(CONSTANTES.userData, JSON.stringify({ userId: response.userId, email: credentials.email }));
-          this.userState.set(userState);
+  constructor() {
+    this.loadUserState();
+  }
+
+  login$ = (credentials: CredentialsDto): Observable<LoginResponseDto> =>
+    this.http.post<LoginResponseDto>(API.login, credentials).pipe(
+      tap((response: LoginResponseDto) => {
+        const userState: UserState = {
+          token: response.id,
+          userId: response.userId.toString(),
+          email: credentials.email,
+        };
+        localStorage.setItem(CONSTANTES.tokenKey, response.id);
+        localStorage.setItem(
+          CONSTANTES.userData,
+          JSON.stringify({ userId: response.userId, email: credentials.email })
+        );
+        this.userState.set(userState);
+        return response;
+      })
+    );
+
+    logout$ = (): Observable<void> =>
+      of(undefined).pipe(
+        tap(() => {
+          localStorage.removeItem(CONSTANTES.tokenKey);
+          localStorage.removeItem(CONSTANTES.userData);
+    
+          this.userState.set({ token: null, userId: null, email: null });
         })
       );
-    }
-
-
-  logout() {
-    localStorage.removeItem(CONSTANTES.tokenKey);
-    localStorage.removeItem(CONSTANTES.userData);
-    this.userState.set({ token: null, userId: null, email: null });
-  }
+    
 
   private loadUserState() {
     const token = localStorage.getItem(CONSTANTES.tokenKey);
     const userData = localStorage.getItem(CONSTANTES.userData);
-    
+
     if (token && userData) {
       const { userId, email } = JSON.parse(userData);
       const userState: UserState = { token, userId, email };
