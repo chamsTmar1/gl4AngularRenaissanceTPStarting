@@ -1,7 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 
-import { AuthInterceptorProvider } from './app/auth/interceptors/auth.interceptor';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +22,6 @@ bootstrapApplication(AppComponent, {
             // or after 30 seconds (whichever comes first).
             registrationStrategy: "registerWhenStable:30000",
         })),
-        AuthInterceptorProvider,
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations(),
     ]
