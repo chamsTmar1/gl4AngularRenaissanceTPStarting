@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Todo } from '../model/todo';
+import { Todo, TodoStatus } from '../model/todo';
 import { LoggerService } from '../../services/logger.service';
 
 let n = 1;
@@ -10,7 +10,12 @@ let n = 1;
 export class TodoService {
   private loggerService = inject(LoggerService);
 
-  private todos: Todo[] = [];
+  private todos: Todo[] = [
+    { id: 1, name: 'Angular', content: 'TP 1', status: 'waiting' },
+    { id: 2, name: 'DataMining', content: 'TP clustering', status: 'inprogress' },
+    { id: 3, name: 'DataBase', content: ' TP indexes', status: 'done' },
+  
+];
 
   /**
    * elle retourne la liste des todos
@@ -45,7 +50,7 @@ export class TodoService {
     }
     return false;
   }
-
+ 
   /**
    * Logger la liste des todos
    */
