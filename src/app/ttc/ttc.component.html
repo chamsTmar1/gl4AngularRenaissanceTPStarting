@@ -1,0 +1,10 @@
+<label for="">Prix htc</label>
+<input type="number" [(ngModel)]="prixHtc" />
+<label for="">quantity</label>
+<input type="number" [(ngModel)]="quantite" />
+<label for="">TVA</label>
+<input type="number" [(ngModel)]="tva" />
+
+<p>prix unitaire {{ prixUnitaire() | currency }}</p>
+<p>prix total {{ prixTotal() | currency }}</p>
+<p>discount {{ discountTotal() | currency }}</p>
