@@ -1,22 +1,24 @@
-import { Component, Input, OnInit, inject } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { RainbowDirective } from '../../directives/rainbow/rainbow.directive';
 
 @Component({
-    selector: "app-color",
-    templateUrl: "./color.component.html",
-    styleUrls: ["./color.component.css"],
-    standalone: true,
+  selector: 'app-color',
+  templateUrl: './color.component.html',
+  styleUrls: ['./color.component.css'],
+  imports: [RainbowDirective],
+  standalone: true,
 })
 export class ColorComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
 
-  @Input() defaultColor = "red";
+  @Input() defaultColor = 'red';
 
   /**
    *
    * The color representing the Div
    */
-  divColor = "";
+  divColor = '';
 
   /**
    * It change the div backgound color
@@ -25,11 +27,11 @@ export class ColorComponent implements OnInit {
    */
 
   constructor() {
-    console.log("In constructor", this.defaultColor);
+    console.log('In constructor', this.defaultColor);
   }
 
   ngOnInit(): void {
-    console.log("In ngOnInit", this.defaultColor);
+    console.log('In ngOnInit', this.defaultColor);
     this.divColor = this.defaultColor;
   }
 
