@@ -57,4 +57,14 @@ export class TodoService {
   logTodos() {
     this.loggerService.logger(this.todos);
   }
+  /**
+   * changer status d'un todo
+   */
+
+  updateStatus(id: number,newstatus:TodoStatus){
+    const todo = this.todos.find(todo => todo.id === id);
+    if (todo) {
+      todo.status = newstatus; 
+  }
+}
 }

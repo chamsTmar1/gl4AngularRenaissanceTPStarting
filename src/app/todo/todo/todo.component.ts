@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
     imports: [FormsModule],
 })
 export class TodoComponent {
+
   private todoService = inject(TodoService);
   todosSignal=signal<Todo[]>([]);
   Constantes=CONSTANTES;
@@ -33,12 +34,16 @@ export class TodoComponent {
   }
 
   changeStatus(id:number,newStatus:TodoStatus){
-    console.log(id)
+
+    this.todoService.updateStatus(id,newStatus)
     
-    const todo = this.todoService.getTodos().find(todo => todo.id === id);
-    if (todo) {
-      todo.status = newStatus; 
-    }
+    //const todo = this.todoService.getTodos().find(todo => todo.id === id);
+    //if (todo) {
+      //todo.status = newStatus; 
+
+    //}
+    console.log("After change",this.todosSignal())
+     
     
   }
 }

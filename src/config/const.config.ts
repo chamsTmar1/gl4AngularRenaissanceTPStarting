@@ -1,5 +1,4 @@
 
-
 import { TodoStatus } from "src/app/todo/model/todo";
 
 export const CONSTANTES:{
