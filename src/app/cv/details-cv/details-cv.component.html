@@ -34,7 +34,7 @@
                   </tbody>
                 </table>
                 <div class="d-flex justify-content-center">
-                  @if (authService.isAuthenticated()) {
+                  @if (authService.authenticated()) {
                     <button (click)="deleteCv(cv)" class="btn btn-danger">
                       Delete
                     </button>

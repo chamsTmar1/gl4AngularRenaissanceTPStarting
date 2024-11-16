@@ -35,7 +35,7 @@
               routerLinkActive="active text-primary"
               >Cv</a
               >
-              @if (authService.isAuthenticated()) {
+              @if (authService.authenticated()) {
                 <a
                   class="nav-link"
                   [routerLink]="['cv/add']"
@@ -67,7 +67,7 @@
                         routerLinkActive="active text-primary"
                         >Rh</a
                         >
-                        @if (!authService.isAuthenticated()) {
+                        @if (!authService.authenticated()) {
                           <a
                             class="nav-link"
                             [routerLink]="['login']"
@@ -75,7 +75,7 @@
                             >Login</a
                             >
                           }
-                          @if (authService.isAuthenticated()) {
+                          @if (authService.authenticated()) {
                             <a
                               class="nav-link"
                               (click)="logout()"

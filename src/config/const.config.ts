@@ -3,6 +3,8 @@ import { TodoStatus } from "src/app/todo/model/todo";
 
 export const CONSTANTES:{
     waiting:TodoStatus;
+    tokenKey: 'token';
+    userData: 'userData';
     inProgress: TodoStatus;
     done: TodoStatus;
     defaultImage:string;
@@ -15,4 +17,3 @@ export const CONSTANTES:{
 
 
   };
-
