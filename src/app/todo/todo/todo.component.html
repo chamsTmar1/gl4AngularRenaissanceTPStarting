@@ -1,18 +1,68 @@
-<div class="row">
-  <div class="col">
-    <ol class="list-group">
-      @for (todo of todos; track todo) {
-        <li class="list-group-item">
-          {{todo.name}} : {{todo.content}}
-          <i (click)="deleteTodo(todo)" class="fa fa-trash" aria-hidden="true"></i>
-        </li>
-      }
-    </ol>
+<div class="row styledrow align-items-end">
+   <div class="col">
+         <input 
+          [(ngModel)]="todo.name" 
+          type="text"
+          placeholder="name"
+          class="form-control">
+    </div>
+    <div class="col">
+       <input
+         [(ngModel)]="todo.content"
+         type="text"
+         placeholder="content"
+         class="form-control">
+    </div> 
+    <div class="col">  
+      <button (click)="addTodo()" [disabled]="!todo.name.trim() || !todo.content.trim()"
+      class="btn btn-primary">add</button>
+    </div>
+    
   </div>
-  <div class="col">
-    name: <input [(ngModel)]="todo.name" type="text" class="form-control">
-    content: <input [(ngModel)]="todo.content" type="text" class="form-control">
-    <button (click)="addTodo()" [disabled]="!todo.name.trim() || !todo.content.trim()"
-    class="btn btn-primary m-2">add</button>
+
+
+<div class="row todolist">
+
+  <div class="col status-column waiting">
+    <h3>Waiting Todos</h3>
+    @for(todo of todosSignal();track todo.id){ @if(todo.status===Constantes.waiting){
+      <li class="list-group-item">
+        {{todo.name}} : {{todo.content}}
+        <i (click)="deleteTodo(todo)" class="fa fa-trash" aria-hidden="true"></i>
+        <button class='btn btn-secondary' 
+        (click)="changeStatus(todo.id,Constantes.inProgress)">Pass</button>
+</li>
+    }
+     }
+ </div>
+
+  <div class="col status-column inprogress">
+    <h3>In progress Todos</h3>
+    @for(todo of todosSignal();track todo.id){ @if(todo.status===Constantes.inProgress){
+      <li class="list-group-item">
+        {{todo.name}} : {{todo.content}}
+        <i (click)="deleteTodo(todo)" class="fa fa-trash" aria-hidden="true"></i>
+        <button class='btn btn-secondary' 
+        (click)="changeStatus(todo.id,Constantes.done)">Pass</button>
+      </li>
+    }
+     }
+    
   </div>
+  <div class="col status-column done">
+    <h3>Done Todos</h3>
+    @for(todo of todosSignal();track todo){ @if(todo.status===Constantes.done){
+      <li class="list-group-item">
+        {{todo.name}} : {{todo.content}}
+        <i (click)="deleteTodo(todo)" class="fa fa-trash" aria-hidden="true"></i>
+      </li>
+    }
+     }
+
+    
+  </div>
+
+
+
 </div>
+

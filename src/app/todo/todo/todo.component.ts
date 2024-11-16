@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { Todo } from '../model/todo';
+import { Component, inject, signal } from '@angular/core';
+import { Todo, TodoStatus } from '../model/todo';
 import { TodoService } from '../service/todo.service';
+import { CONSTANTES } from 'src/config/const.config';
 
 import { FormsModule } from '@angular/forms';
 
@@ -13,13 +14,16 @@ import { FormsModule } from '@angular/forms';
     imports: [FormsModule],
 })
 export class TodoComponent {
-  private todoService = inject(TodoService);
 
-  todos: Todo[] = [];
+  private todoService = inject(TodoService);
+  todosSignal=signal<Todo[]>([]);
+  Constantes=CONSTANTES;
   todo = new Todo();
-  constructor() {
-    this.todos = this.todoService.getTodos();
+  
+  constructor(){
+    this.todosSignal.set(this.todoService.getTodos())
   }
+
   addTodo() {
     this.todoService.addTodo(this.todo);
     this.todo = new Todo();
@@ -27,5 +31,19 @@ export class TodoComponent {
 
   deleteTodo(todo: Todo) {
     this.todoService.deleteTodo(todo);
+  }
+
+  changeStatus(id:number,newStatus:TodoStatus){
+
+    this.todoService.updateStatus(id,newStatus)
+    
+    //const todo = this.todoService.getTodos().find(todo => todo.id === id);
+    //if (todo) {
+      //todo.status = newStatus; 
+
+    //}
+    console.log("After change",this.todosSignal())
+     
+    
   }
 }
