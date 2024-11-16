@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center" *ngIf="cv">
+<div class="d-flex justify-content-center" *ngIf="$cv | async as cv">
   <div class="col-lg-8 push-lg-4">
     <div class="tab-content p-b-3">
       <div class="tab-pane active" id="profile">
@@ -33,7 +33,7 @@
               </tbody>
             </table>
             <div class="d-flex justify-content-center">
-              <button *ngIf="authService.isAuthenticated()" (click)="deleteCv(cv)" class="btn btn-danger">
+              <button *ngIf="authService.isAuthenticated()" (click)="onDelete(cv)" class="btn btn-danger">
                 Delete
               </button>
             </div>
