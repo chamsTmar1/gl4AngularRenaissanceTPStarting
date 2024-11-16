@@ -38,6 +38,7 @@
                     <button (click)="onDelete(cv)" class="btn btn-danger">
                       Delete
                     </button>
+                    @if(deleteResult$ | async;){}
                   }
                 </div>
               </div>

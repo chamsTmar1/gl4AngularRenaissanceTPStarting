@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTES } from '../../../config/routes.config';
 import { AuthService } from '../../auth/services/auth.service';
-import { catchError, of, Subject, switchMap, tap } from 'rxjs';
+import { catchError, exhaustMap, of, Subject, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-details-cv',
@@ -32,7 +32,7 @@ export class DetailsCvComponent implements OnInit {
   */
 
   //syntaxe : activatedRoute.params.subscribe(params=>{this.monParam=params['param']});
-  
+
   $cv = this.activatedRoute.params.pipe(
     switchMap((params) => this.cvService.getCvById(+params['id'])),
     catchError(() => {
@@ -44,7 +44,8 @@ export class DetailsCvComponent implements OnInit {
 
   private deleteSubject = new Subject<Cv>();
   deleteResult$ = this.deleteSubject.pipe(
-    switchMap((cv) =>
+
+    exhaustMap((cv) =>
       this.cvService.deleteCvById(cv.id).pipe(
         tap(() => {
           this.toastr.success(`${cv.name} supprimé avec succès`);
