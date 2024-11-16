@@ -26,27 +26,13 @@ export class TtcComponent {
     return 0;
   });
 
-  prixUnitaire: Signal<number> = computed(() => this.prixHtc() * this.tva());
+  prixUnitaire: Signal<number> = computed(
+    () => this.prixHtc() * (1 + this.tva() / 100)
+  );
   prixTotal: Signal<number> = computed(
     () => this.prixUnitaire() * this.quantite()
   );
   discountTotal: Signal<number> = computed(
     () => this.prixTotal() * this.discount()
   );
-
-  calculatePrixUnitaire(): number {
-    console.log('a');
-
-    return this.prixHtc() * this.tva();
-  }
-  calculatePrixTotal(): number {
-    console.log('b');
-    return this.calculatePrixUnitaire() * this.quantite();
-  }
-
-  calculateDiscount() {
-    console.log('c');
-
-    return this.calculatePrixTotal() * this.discount();
-  }
 }
