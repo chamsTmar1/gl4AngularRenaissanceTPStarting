@@ -25,12 +25,12 @@
 
   <div class="col status-column waiting">
     <h3>Waiting Todos</h3>
-    @for(todo of todosSignal();track todo.id){ @if(todo.status===Constantes.waiting){
+    @for(todo of todosSignal();track $index){ @if(todo.status===Constantes.waiting){
       <li class="list-group-item">
         {{todo.name}} : {{todo.content}}
         <i (click)="deleteTodo(todo)" class="fa fa-trash" aria-hidden="true"></i>
         <button class='btn btn-secondary' 
-        (click)="changeStatus(todo.id,Constantes.inProgress)">Pass</button>
+        (click)="changeStatus($index,Constantes.inProgress)">Pass</button>
 </li>
     }
      }
@@ -38,12 +38,12 @@
 
   <div class="col status-column inprogress">
     <h3>In progress Todos</h3>
-    @for(todo of todosSignal();track todo.id){ @if(todo.status===Constantes.inProgress){
+    @for(todo of todosSignal();track $index){ @if(todo.status===Constantes.inProgress){
       <li class="list-group-item">
         {{todo.name}} : {{todo.content}}
         <i (click)="deleteTodo(todo)" class="fa fa-trash" aria-hidden="true"></i>
         <button class='btn btn-secondary' 
-        (click)="changeStatus(todo.id,Constantes.done)">Pass</button>
+        (click)="changeStatus($index,Constantes.done)">Pass</button>
       </li>
     }
      }

@@ -11,9 +11,9 @@ export class TodoService {
   private loggerService = inject(LoggerService);
 
   private todos: Todo[] = [
-    { id: 1, name: 'Angular', content: 'TP 1', status: 'waiting' },
-    { id: 2, name: 'DataMining', content: 'TP clustering', status: 'inprogress' },
-    { id: 3, name: 'DataBase', content: ' TP indexes', status: 'done' },
+    {  name: 'Angular', content: 'TP 1', status: 'waiting' },
+    {  name: 'DataMining', content: 'TP clustering', status: 'inprogress' },
+    {  name: 'DataBase', content: ' TP indexes', status: 'done' },
   
 ];
 
@@ -61,10 +61,10 @@ export class TodoService {
    * changer status d'un todo
    */
 
-  updateStatus(id: number,newstatus:TodoStatus){
-    const todo = this.todos.find(todo => todo.id === id);
+  updateStatus(index: number,newstatus:TodoStatus){
+    const todo = this.todos[index];
     if (todo) {
       todo.status = newstatus; 
-  }
+   }
 }
 }

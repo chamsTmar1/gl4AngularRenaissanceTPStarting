@@ -33,9 +33,9 @@ export class TodoComponent {
     this.todoService.deleteTodo(todo);
   }
 
-  changeStatus(id:number,newStatus:TodoStatus){
+  changeStatus(index:number,newStatus:TodoStatus){
 
-    this.todoService.updateStatus(id,newStatus)
+    this.todoService.updateStatus(index,newStatus)
     
     //const todo = this.todoService.getTodos().find(todo => todo.id === id);
     //if (todo) {
