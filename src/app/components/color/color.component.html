@@ -1,8 +1,16 @@
-<div [style.backgroundColor]="divColor">
-  Color
-</div>
+<div appRainbow [style.backgroundColor]="divColor">Color</div>
 
-<input #inputColor (change)="changeColor(inputColor.value)" type="text" class="form-control">
+<input
+  appRainbow
+  #inputColor
+  (change)="changeColor(inputColor.value)"
+  type="text"
+  class="form-control"
+/>
+
+<textarea appRainbow>
+  Hello
+</textarea>
 
 <button (click)="changeColor(defaultColor)" class="btn btn-warning">
   reset
