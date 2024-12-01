@@ -52,6 +52,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
 import { SliderComponent } from './rxjs/slider/slider.component';
 import { RainbowDirective } from './directives/raibow/rainbow.directive';
+import { MasterDetailsCvComponent } from './cv/master-details-cv/master-details-cv.component';
+import { CvDetailsComponent } from './cv/master-details-cv/cv-details/cv-details.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,8 @@ import { RainbowDirective } from './directives/raibow/rainbow.directive';
     RhComponent,
     UserListComponent,
     ProductsComponent,
+    MasterDetailsCvComponent,
+    CvDetailsComponent,
   ],
   bootstrap: [AppComponent],
   imports: [
