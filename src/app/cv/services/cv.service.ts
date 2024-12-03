@@ -111,6 +111,7 @@ export class CvService {
     const params = new HttpParams().set("filter", search);
     return this.http.get<any>(API.cv, { params });
   }
+  
   /**
    * Recherche les cvs dont la valeur est égale à la chaine passée en paramètre
    * @param property : string, la propriété sur laquelle on va requeter
