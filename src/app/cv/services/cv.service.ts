@@ -1,28 +1,34 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject} from "@angular/core";
 import { Cv } from "../model/cv";
-import { Observable, Subject } from "rxjs";
+import { Observable } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { API } from "../../../config/api.config";
+import {signal, WritableSignal } from "@angular/core";
 
 @Injectable({
   providedIn: "root",
 })
 export class CvService {
-  private cvs: Cv[] = [];
+  private http = inject(HttpClient);
+
+  private cvs: Cv[] = [
+    new Cv(1, "aymen", "sellaouti", "teacher", "as.jpg", "1234", 40),
+    new Cv(2, "skander", "sellaouti", "enfant", "       ", "1234", 4),
+  ];
+
   /**
-   * Le subject permettant de créer le flux des cvs sélectionnés
+   * Le signal permettant de créer le flux des cvs sélectionnés
    */
-  #selectCvSuject$ = new Subject<Cv>();
+  private selectedCvSignal: WritableSignal<Cv | null> = signal(null);
+
   /**
    * Le flux des cvs sélectionnés
    */
-  selectCv$ = this.#selectCvSuject$.asObservable();
-  constructor(private http: HttpClient) {
-    this.cvs = [
-      new Cv(1, "aymen", "sellaouti", "teacher", "as.jpg", "1234", 40),
-      new Cv(2, "skander", "sellaouti", "enfant", "       ", "1234", 4),
-    ];
+  get selectCv$(): Cv | null {
+    return this.selectedCvSignal();
   }
+
+  constructor() {}
 
   /**
    *
@@ -39,7 +45,7 @@ export class CvService {
    *
    * Retourne la liste des cvs de l'API
    *
-   * @returns CV[]
+   * @returns Observable<Cv[]>
    *
    */
   getCvs(): Observable<Cv[]> {
@@ -51,7 +57,7 @@ export class CvService {
    * supprime un cv par son id de l'API
    *
    * @param id: number
-   * @returns CV[]
+   * @returns Observable<any>
    *
    */
   deleteCvById(id: number): Observable<any> {
@@ -67,7 +73,7 @@ export class CvService {
    * Retourne un cv par son id de l'API
    *
    * @param id: number
-   * @returns CV[]
+   * @returns Observable<Cv>
    *
    */
   getCvById(id: number): Observable<Cv> {
@@ -76,7 +82,7 @@ export class CvService {
 
   /**
    *
-   * Cherche un cv avec son id dans lai liste fictive de cvs
+   * Cherche un cv avec son id dans la liste fictive de cvs
    *
    * @param id
    * @returns Cv | null
@@ -104,20 +110,21 @@ export class CvService {
   /**
    * Recherche les cvs dont le name contient la chaine name passée en paramètre
    * @param name : string
-   * @returns cvs Cv[]
+   * @returns Observable<Cv[]>
    */
-  selectByName(name: string) {
+  selectByName(name: string): Observable<Cv[]> {
     const search = `{"where":{"name":{"like":"%${name}%"}}}`;
     const params = new HttpParams().set("filter", search);
     return this.http.get<any>(API.cv, { params });
   }
+
   /**
    * Recherche les cvs dont la valeur est égale à la chaine passée en paramètre
-   * @param property : string, la propriété sur laquelle on va requeter
-   * @param value : string, la valeur de la propriété sur laquelle on va requeter
-   * @returns cvs Cv[]
+   * @param property : string, la propriété sur laquelle on va requêter
+   * @param value : string, la valeur de la propriété sur laquelle on va requêter
+   * @returns Observable<Cv[]>
    */
-  selectByProperty(property: string, value: string) {
+  selectByProperty(property: string, value: string): Observable<Cv[]> {
     const search = `{"where":{"${property}":"${value}"}}`;
     const params = new HttpParams().set("filter", search);
     return this.http.get<Cv[]>(API.cv, { params });
@@ -129,6 +136,6 @@ export class CvService {
    * @param cv : Le cv à ajouter dans le flux des cvs sélectionnés
    */
   selectCv(cv: Cv) {
-    this.#selectCvSuject$.next(cv);
+    this.selectedCvSignal.set(cv);
   }
 }
