@@ -1,10 +1,49 @@
-<label for="">Prix htc</label>
-<input type="number" [(ngModel)]="prixHtc" />
-<label for="">quantity</label>
-<input type="number" [(ngModel)]="quantite" />
-<label for="">TVA</label>
-<input type="number" [(ngModel)]="tva" />
-
-<p>prix unitaire {{ prixUnitaire() | currency }}</p>
-<p>prix total {{ prixTotal() | currency }}</p>
-<p>discount {{ discountTotal() | currency }}</p>
+<div class="container mt-4">
+    <h2 class="text-center">TTC Calculator</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="prixHtc"
+          placeholder="Prix HT"
+        />
+        <small class="form-text text-muted">Prix HT</small>
+      </div>
+      <div class="col-md-4">
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="quantite"
+          placeholder="Quantité"
+        />
+        <small class="form-text text-muted">Quantité</small>
+      </div>
+      <div class="col-md-4">
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="tva"
+          placeholder="TVA"
+        />
+        <small class="form-text text-muted">TVA</small>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="alert alert-info">
+          Prix unitaire TTC :  {{ prixUnitaire() | currency }}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="alert alert-success">
+            <p>prix total {{ prixTotal() | currency }}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="alert alert-danger">
+          Discount : {{ discountTotal() | currency }}
+        </div>
+      </div>
+    </div>
+  </div>
