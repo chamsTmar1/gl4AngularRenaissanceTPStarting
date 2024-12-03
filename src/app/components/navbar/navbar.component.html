@@ -55,6 +55,12 @@
           routerLinkActive="active text-primary"
           >Todo</a
         >
+        <!---  *ngIf="authService.isAuthenticated()" -->
+        <a
+          class="nav-link"
+          [routerLink]="['products']"
+          routerLinkActive="active text-primary"
+          >Products</a>
         <a
           class="nav-link"
           [routerLink]="['word']"
