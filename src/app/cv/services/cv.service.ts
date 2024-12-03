@@ -1,14 +1,16 @@
-import { Injectable } from "@angular/core";
-import { Cv } from "../model/cv";
-import { Observable, Subject } from "rxjs";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { API } from "../../../config/api.config";
+import { Injectable } from '@angular/core';
+import { Cv } from '../model/cv';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { API } from '../../../config/api.config';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class CvService {
   private cvs: Cv[] = [];
+  isReload: BehaviorSubject<Cv | null> = new BehaviorSubject<Cv | null>(null);
+
   /**
    * Le subject permettant de créer le flux des cvs sélectionnés
    */
@@ -19,8 +21,8 @@ export class CvService {
   selectCv$ = this.#selectCvSuject$.asObservable();
   constructor(private http: HttpClient) {
     this.cvs = [
-      new Cv(1, "aymen", "sellaouti", "teacher", "as.jpg", "1234", 40),
-      new Cv(2, "skander", "sellaouti", "enfant", "       ", "1234", 4),
+      new Cv(1, 'aymen', 'sellaouti', 'teacher', 'as.jpg', '1234', 40),
+      new Cv(2, 'skander', 'sellaouti', 'enfant', '       ', '1234', 4),
     ];
   }
 
@@ -108,7 +110,7 @@ export class CvService {
    */
   selectByName(name: string) {
     const search = `{"where":{"name":{"like":"%${name}%"}}}`;
-    const params = new HttpParams().set("filter", search);
+    const params = new HttpParams().set('filter', search);
     return this.http.get<any>(API.cv, { params });
   }
   /**
@@ -119,7 +121,7 @@ export class CvService {
    */
   selectByProperty(property: string, value: string) {
     const search = `{"where":{"${property}":"${value}"}}`;
-    const params = new HttpParams().set("filter", search);
+    const params = new HttpParams().set('filter', search);
     return this.http.get<Cv[]>(API.cv, { params });
   }
 

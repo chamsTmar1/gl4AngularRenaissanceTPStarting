@@ -24,7 +24,7 @@ export class CvDetailsComponent {
   $cv = this.activatedRoute.params.pipe(
     switchMap((params) => this.cvService.getCvById(+params['id'])),
     catchError(() => {
-      this.router.navigate([APP_ROUTES.cv]);
+      this.router.navigate([APP_ROUTES.cv, 'list']);
       return of(null);
     })
   );
@@ -35,6 +35,7 @@ export class CvDetailsComponent {
       this.cvService.deleteCvById(cv.id).pipe(
         tap(() => {
           this.toastr.success(`${cv.name} supprimé avec succès`);
+          this.cvService.isReload.next(cv);
           this.router.navigate(['cv/list']);
         }),
         catchError(() => {
