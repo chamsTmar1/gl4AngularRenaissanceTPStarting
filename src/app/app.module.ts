@@ -17,14 +17,9 @@ import { CardProfilComponent } from './components/card-profil/card-profil.compon
 import { PereComponent } from './components/pere/pere.component';
 import { FilsComponent } from './components/fils/fils.component';
 
-import { AddCvComponent } from './cv/add-cv/add-cv.component';
-import { CvComponent } from './cv/cv/cv.component';
-import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
-
 import { NgstyleComponent } from './directives/ngstyle/ngstyle.component';
 import { MiniWordComponent } from './directives/mini-word/mini-word.component';
 import { NgclassComponent } from './directives/ngclass/ngclass.component';
-import { TodoComponent } from './todo/todo/todo.component';
 
 import { HighlightDirective } from './directives/highlight.directive';
 
@@ -39,16 +34,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { TestObservableComponent } from './rxjs/test-observable/test-observable.component';
 import { TestHttpComponent } from './components/test-http/test-http.component';
 import { AuthInterceptorProvider } from './auth/interceptors/auth.interceptor';
-import { ListComponent } from './cv/list/list.component';
-import { ItemComponent } from './cv/item/item.component';
-import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
-import { EmbaucheComponent } from './cv/embauche/embauche.component';
-import { CvCardComponent } from './cv/cv-card/cv-card.component';
 import { RhComponent } from './optimizationPattern/rh/rh.component';
 import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
 import { ProductsComponent } from './products/products.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
 import { SliderComponent } from './rxjs/slider/slider.component';
 import { RainbowDirective } from './directives/raibow/rainbow.directive';
 import { CvModule } from './cv/cv.module';
@@ -64,23 +53,13 @@ import { TodoModule } from './todo/todo.module';
     CardProfilComponent,
     PereComponent,
     FilsComponent,
-    AddCvComponent,
-    CvComponent,
-    ListComponent,
-    ItemComponent,
-    DetailsCvComponent,
-    CvCardComponent,
     CardProfilComponent,
-    EmbaucheComponent,
-    DefaultImagePipe,
-    AutocompleteComponent,
     NgstyleComponent,
     MiniWordComponent,
     NgclassComponent,
     HighlightDirective,
     RainbowDirective,
     Btc2usdPipe,
-    TodoComponent,
     NavbarComponent,
     FrontComponent,
     AdminComponent,

@@ -5,7 +5,13 @@ import { CvComponent } from './cv/cv.component';
 import { AddCvComponent } from './add-cv/add-cv.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { DetailsCvComponent } from './details-cv/details-cv.component';
-
+import { CvCardComponent } from './cv-card/cv-card.component';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { ListComponent } from './list/list.component';
+import { ItemComponent } from './item/item.component';
+import { DefaultImagePipe } from './pipes/default-image.pipe';
+import { EmbaucheComponent } from './embauche/embauche.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes : Routes = [
   { path : '', component : CvComponent },
@@ -14,11 +20,25 @@ const routes : Routes = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CvComponent,
+    AddCvComponent,
+    DetailsCvComponent,
+    CvCardComponent,
+    AutocompleteComponent,
+    ListComponent,
+    ItemComponent,
+    DefaultImagePipe,
+    EmbaucheComponent
+  ],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
-  exports: [RouterModule]
+  exports: [
+    RouterModule,
+    CvComponent,
+  ]
 })
 export class CvModule { }
