@@ -36,6 +36,13 @@
           >Cv</a
         >
         <a
+          class="nav-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          [routerLink]="['cv/list']"
+          routerLinkActive="active text-primary"
+          >Master Details</a
+        >
+        <a
           *ngIf="authService.isAuthenticated()"
           class="nav-link"
           [routerLink]="['cv/add']"
