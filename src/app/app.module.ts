@@ -8,7 +8,6 @@ import {
 } from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
-
 import { AppComponent } from './app.component';
 import { FirstComponent } from './components/first/first.component';
 import { SecondComponent } from './components/second.component';
@@ -52,6 +51,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
 import { SliderComponent } from './rxjs/slider/slider.component';
 import { RainbowDirective } from './directives/raibow/rainbow.directive';
+import { CvModule } from './cv/cv.module';
+import { TodoModule } from './todo/todo.module';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,8 @@ import { RainbowDirective } from './directives/raibow/rainbow.directive';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    CvModule,
+    TodoModule,
   ],
   providers: [
     AuthInterceptorProvider,
