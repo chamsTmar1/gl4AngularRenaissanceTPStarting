@@ -3,7 +3,26 @@
     <div class="alert alert-warning">
       {{ date$ | async }}
     </div>
-    <app-list [cvs]="cvs$ | async"></app-list>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#juniors">
+          Juniors
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#seniors">
+          Seniors
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div id="juniors" class="tab-pane fade show active">
+        <app-list [cvs]="juniors$ | async"></app-list>
+      </div>
+      <div id="seniors" class="tab-pane fade">
+        <app-list [cvs]="seniors$ | async"></app-list>
+      </div>
+    </div>
   </div>
   <div class="col">
     <app-cv-card [cv]="selectedCv$ | async"></app-cv-card>
