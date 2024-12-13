@@ -11,7 +11,10 @@ export function cinAgeValidator() : ValidatorFn {
         const age=control.get('age');
 
         if ((age?.value == null || cin?.value==null || cin?.value.length <2)) return null;
-
+        
+         if (isNaN(age.value)) {
+            return { ageNotNumber: true };
+        }
 
         const firstNumCin=parseInt(cin?.value.substring(0, 2), 10);
         if(age?.value>=60){
