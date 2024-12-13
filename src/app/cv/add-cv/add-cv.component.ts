@@ -9,6 +9,8 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { APP_ROUTES } from "src/config/routes.config";
 import { Cv } from "../model/cv";
+import { cinAgeValidator } from "../Validators/cin-age-validator";
+
 
 @Component({
   selector: "app-add-cv",
@@ -23,27 +25,57 @@ export class AddCvComponent {
     private formBuilder: FormBuilder
   ) {}
 
+
   form = this.formBuilder.group(
     {
       name: ["", Validators.required],
       firstname: ["", Validators.required],
       path: [""],
       job: ["", Validators.required],
-      cin: [
-        "",
-        {
-          validators: [Validators.required, Validators.pattern("[0-9]{8}")],
-        },
-      ],
+      cin: ["",
+    ],
       age: [
-        0,
+        14,
         {
-          validators: [Validators.required],
+          validators: [Validators.required, Validators.min(14)],
         },
       ],
     },
   );
 
+
+  ngOnInit() {
+
+
+    const ageControl = this.form.get("age");
+    const cinControl = this.form.get("cin");
+ 
+    // ici on'est en train d'appliqueer  uen validation initiale
+    if (cinControl && ageControl) {
+      cinControl.setValidators([
+        Validators.required,
+        Validators.pattern("[0-9]{8}"),
+        cinAgeValidator(ageControl.value!),
+      ]);
+      cinControl.updateValueAndValidity();
+    }
+    // validation dynamique du champ CIN en fonction des changements de l'âge
+    ageControl?.valueChanges.subscribe((age) => {
+      if (cinControl && age) {
+        cinControl.setValidators([
+           Validators.required,
+           Validators.pattern("[0-9]{8}"),
+           cinAgeValidator(age),
+        ]);
+        cinControl.updateValueAndValidity();
+
+      }
+    });
+
+    
+  }
+ 
+ 
   addCv() {
     this.cvService.addCv(this.form.value as Cv).subscribe({
       next: (cv) => {
@@ -57,6 +89,7 @@ export class AddCvComponent {
       },
     });
   }
+
 
   get name(): AbstractControl {
     return this.form.get("name")!;
@@ -77,3 +110,5 @@ export class AddCvComponent {
     return this.form.get("cin")!;
   }
 }
+
+
