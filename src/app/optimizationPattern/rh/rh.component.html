@@ -5,10 +5,10 @@
 
 <div class="row">
   <div class="col">
-    <app-user-list (add)="addUser(oddUsers, $event)" [users]="oddUsers" [usersCluster]="'Boss'"></app-user-list>
+    <app-user-list (add)="oddUsers = addUser(oddUsers, $event)" [users]="oddUsers" [usersCluster]="'Boss'"></app-user-list>
   </div>
   <div class="col">
-    <app-user-list  (add)="addUser(evenUsers, $event)" [users]="evenUsers" [usersCluster]="'Workers'"></app-user-list>
+    <app-user-list  (add)="evenUsers = addUser(evenUsers, $event)" [users]="evenUsers" [usersCluster]="'Workers'"></app-user-list>
   </div>
 </div>
 
