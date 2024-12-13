@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTES } from 'src/config/routes.config';
 import { Cv } from '../model/cv';
+import { CONSTANTES } from '../../../config/const.config';
 
 @Component({
   selector: 'app-add-cv',
@@ -50,6 +51,15 @@ export class AddCvComponent {
       }
       this.path?.enable();
     });
+
+    const cachedCvstr = localStorage.getItem(CONSTANTES.formCache);
+    if (cachedCvstr) {
+      this.form.patchValue(JSON.parse(cachedCvstr));
+    }
+
+    this.form.valueChanges.subscribe((form) => {
+      localStorage.setItem(CONSTANTES.formCache, JSON.stringify(form));
+    });
   }
 
   addCv() {
@@ -57,6 +67,7 @@ export class AddCvComponent {
       next: (cv) => {
         this.router.navigate([APP_ROUTES.cv]);
         this.toastr.success(`Le cv ${cv.firstname} ${cv.name}`);
+        localStorage.removeItem(CONSTANTES.formCache);
       },
       error: (err) => {
         this.toastr.error(
