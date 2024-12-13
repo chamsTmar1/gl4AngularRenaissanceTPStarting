@@ -13,7 +13,7 @@ export function cinAgeValidator() : ValidatorFn {
         if ((age?.value == null || cin?.value==null || cin?.value.length <2)) return null;
         
          if (isNaN(age.value)) {
-            return { ageNotNumber: true };
+            return null;
         }
 
         const firstNumCin=parseInt(cin?.value.substring(0, 2), 10);

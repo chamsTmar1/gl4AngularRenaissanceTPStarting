@@ -10,7 +10,6 @@
   </div>
   Firstname:
   <input type="text" class="form-control" formControlName="firstname" /> Age:
-
   <input type="text" class="form-control" formControlName="age" /> Cin:
   <input type="text" class="form-control" formControlName="cin" />
   <div
@@ -21,8 +20,7 @@
   >
     Cette Cin est invalide
   </div>
-
-  <div *ngIf =" cin?.touched && cin.errors && cin.errors['cinFirstTwoNumInvalid']" class="alert alert-danger"
+  <div *ngIf =" cin?.touched && age?.touched && form.errors && form.errors['cinFirstTwoNumInvalid']" class="alert alert-danger"
   >
   Cette cin n'est pas valide par rapport à  votre age
 
