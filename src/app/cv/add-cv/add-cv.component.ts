@@ -42,6 +42,7 @@ export class AddCvComponent {
     this.form.get('path')?.disable();
 
     this.age.valueChanges.subscribe((age) => {
+      age = Number(age);
       if (!age || age < 18) {
         this.path?.disable();
         this.path?.reset();
