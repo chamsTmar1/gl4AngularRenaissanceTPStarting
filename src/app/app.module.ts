@@ -53,6 +53,8 @@ import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component'
 import { SliderComponent } from './rxjs/slider/slider.component';
 import { RainbowDirective } from './directives/raibow/rainbow.directive';
 import { MasterDetailsCvComponent } from './cv/master-details-cv/master-details-cv.component';
+import { InputUserComponent } from './optimizationPattern/user-list/input-user/input-user.component';
+import { ListUserComponent } from './optimizationPattern/user-list/list-user/list-user.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +96,8 @@ import { MasterDetailsCvComponent } from './cv/master-details-cv/master-details-
     UserListComponent,
     ProductsComponent,
     MasterDetailsCvComponent,
+    InputUserComponent,
+    ListUserComponent
   ],
   bootstrap: [AppComponent],
   imports: [

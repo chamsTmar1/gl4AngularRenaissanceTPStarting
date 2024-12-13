@@ -1,16 +1,3 @@
 <div class="alert alert-info">List of {{usersCluster}}</div>
-<div class="row">
-  <div class="col-9">
-    <input type="text" class="form-control" [(ngModel)]="userFullName">
-  </div>
-  <div class="col-3">
-    <button class="btn btn-primary" [disabled]="!userFullName" (click)="addUser()">add user</button>
-  </div>
-</div>
-<ol class="list-group">
-  <li
-    *ngFor="let user of users"
-    class="list-group-item">
-    {{user.name}} : {{user.age}} [{{fibo(user.age)}}]
-  </li>
-</ol>
+<app-input-user (add)="add.emit($event)"></app-input-user>
+<app-list-user [users]="users"></app-list-user>
