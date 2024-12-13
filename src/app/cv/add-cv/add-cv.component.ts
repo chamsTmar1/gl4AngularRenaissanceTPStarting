@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { APP_ROUTES } from "src/config/routes.config";
 import { Cv } from "../model/cv";
+import { cinAgeValidator } from "../Validators/cin-age-validator";
 
 @Component({
   selector: "app-add-cv",
@@ -42,6 +43,7 @@ export class AddCvComponent {
         },
       ],
     },
+    { validators: cinAgeValidator()}
   );
 
   addCv() {
