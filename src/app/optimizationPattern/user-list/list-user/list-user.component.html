@@ -2,6 +2,6 @@
   <li
     *ngFor="let user of users"
     class="list-group-item">
-    {{user.name}} : {{user.age}} [{{fibo(user.age)}}]
+    {{user.name}} : {{user.age}} [{{ user.age | calculate }}]
   </li>
 </ol>

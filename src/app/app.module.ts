@@ -55,6 +55,7 @@ import { RainbowDirective } from './directives/raibow/rainbow.directive';
 import { MasterDetailsCvComponent } from './cv/master-details-cv/master-details-cv.component';
 import { InputUserComponent } from './optimizationPattern/user-list/input-user/input-user.component';
 import { ListUserComponent } from './optimizationPattern/user-list/list-user/list-user.component';
+import { CalculatePipe } from './optimizationPattern/user-list/calculate.pipe';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { ListUserComponent } from './optimizationPattern/user-list/list-user/lis
     ProductsComponent,
     MasterDetailsCvComponent,
     InputUserComponent,
-    ListUserComponent
+    ListUserComponent,
+    CalculatePipe
   ],
   bootstrap: [AppComponent],
   imports: [
