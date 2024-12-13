@@ -43,11 +43,11 @@ export class AddCvComponent {
 
     this.age.valueChanges.subscribe((age) => {
       if (!age || age < 18) {
-        this.form.get('path')?.disable();
-        this.form.get('path')?.reset();
+        this.path?.disable();
+        this.path?.reset();
         return;
       }
-      this.form.get('path')?.enable();
+      this.path?.enable();
     });
   }
 
