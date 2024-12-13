@@ -13,7 +13,6 @@ import { CvComponent } from './cv/cv/cv.component';
 import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
 import { RhComponent } from './optimizationPattern/rh/rh.component';
 import { MasterDetailsCvComponent } from './cv/master-details-cv/master-details-cv.component';
-import { CvDetailsComponent } from './cv/master-details-cv/cv-details/cv-details.component';
 import { ProductsComponent } from './products/products.component';
 
 const routes: Route[] = [
@@ -27,7 +26,7 @@ const routes: Route[] = [
   {
     path: 'cv/list',
     component: MasterDetailsCvComponent,
-    children: [{ path: ':id', component: CvDetailsComponent }],
+    children: [{ path: ':id', component: DetailsCvComponent }],
   },
   { path: 'cv/add', component: AddCvComponent, canActivate: [AuthGuard] },
   { path: 'cv/:id', component: DetailsCvComponent },

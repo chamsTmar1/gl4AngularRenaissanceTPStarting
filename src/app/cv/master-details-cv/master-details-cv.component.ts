@@ -40,7 +40,7 @@ export class MasterDetailsCvComponent {
         return of(this.cvService.getFakeCvs());
       })
     );
-    this.cvService.isReload
+    this.cvService.cvToRemove$
       .pipe(
         tap((cvToRemove: Cv | null) => {
           if (cvToRemove != null)

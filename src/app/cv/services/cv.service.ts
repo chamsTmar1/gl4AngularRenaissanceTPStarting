@@ -9,7 +9,9 @@ import { API } from '../../../config/api.config';
 })
 export class CvService {
   private cvs: Cv[] = [];
-  isReload: BehaviorSubject<Cv | null> = new BehaviorSubject<Cv | null>(null);
+  cvToRemove$: BehaviorSubject<Cv | null> = new BehaviorSubject<Cv | null>(
+    null
+  );
 
   /**
    * Le subject permettant de créer le flux des cvs sélectionnés
