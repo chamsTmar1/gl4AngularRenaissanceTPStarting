@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cv } from '../model/cv';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { API } from '../../../config/api.config';
 
@@ -135,4 +135,5 @@ export class CvService {
   selectCv(cv: Cv) {
     this.#selectCvSuject$.next(cv);
   }
+
 }

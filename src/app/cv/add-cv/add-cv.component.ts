@@ -7,6 +7,7 @@ import { APP_ROUTES } from 'src/config/routes.config';
 import { Cv } from '../model/cv';
 import { CONSTANTES } from '../../../config/const.config';
 import { cinAgeValidator } from '../Validators/cin-age-validator';
+import { uniqueCinValidator } from './unique-cin-validator';
 
 @Component({
   selector: 'app-add-cv',
@@ -31,6 +32,8 @@ export class AddCvComponent {
         '',
         {
           validators: [Validators.required, Validators.pattern('[0-9]{8}')],
+          asyncValidators: [uniqueCinValidator(this.cvService)],
+          updateOn: 'blur', // to minimize API calls
         },
       ],
       age: [
