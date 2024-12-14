@@ -16,7 +16,7 @@ export class AutocompleteComponent {
   }
   form = this.formBuilder.group({ search: [""] });
   filteredCvs$ = this.search.valueChanges.pipe(
-    debounceTime(400),
+    debounceTime(900),
     distinctUntilChanged(),
     switchMap((name) =>
       name
