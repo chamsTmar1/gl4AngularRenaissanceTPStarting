@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cv } from '../model/cv';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { API } from '../../../config/api.config';
 
@@ -136,12 +136,4 @@ export class CvService {
     this.#selectCvSuject$.next(cv);
   }
 
-  checkCinExists(cin: string): Observable<boolean> {
-    const search = `{"where":{"cin":"${cin}"}}`;
-    const params = new HttpParams().set('filter', search);
-
-    return this.http.get<Cv[]>(API.cv, { params }).pipe(
-      map((cvs) => cvs.length === 0) // true if no CVs with the given cin exist
-    );
-  }
 }

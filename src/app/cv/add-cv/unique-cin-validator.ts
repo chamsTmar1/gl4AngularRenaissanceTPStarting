@@ -4,19 +4,22 @@ import { debounceTime, map, switchMap, catchError, of, Observable, distinctUntil
 
 export function uniqueCinValidator(cvService: CvService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-    if (!control.value) {
-      return of(null); 
-    }
-
     return of(control.value).pipe(
-      debounceTime(300), 
-      distinctUntilChanged(), 
-      switchMap((cin) => 
-        cvService.checkCinExists(cin).pipe(
-          map((exists) => (exists ? { cinTaken: true } : null)),
-          catchError(() => of(null)) 
+      distinctUntilChanged(),
+      debounceTime(300),
+      switchMap((value) =>
+        cvService.selectByProperty('cin', value).pipe(
+          map((cvs) => {
+            const isUnique = !(cvs && cvs.length > 0);
+            return isUnique ? null : { cinNotUnique: true };
+          }),
+          catchError((err) => {
+            console.error('Erreur de validation:', err);
+            return of(null);
+          })
         )
       )
     );
-  };
+  }
 }
+
