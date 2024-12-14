@@ -73,7 +73,6 @@ import { TodoModule } from './todo/todo.module';
     RhComponent,
     UserListComponent,
     ProductsComponent,
-    MasterDetailsCvComponent,
   ],
   bootstrap: [AppComponent],
   imports: [

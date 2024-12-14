@@ -13,7 +13,7 @@
   <input type="text" class="form-control" formControlName="age" /> Cin:
   <input type="text" class="form-control" formControlName="cin" />
 
-  <div *ngIf="form.get('cin')?.errors?.['cinTaken'] && form.get('cin')?.touched" class="alert alert-danger">
+  <div *ngIf="form.get('cin')?.errors?.['cinNotUnique'] && form.get('cin')?.touched" class="alert alert-danger">
     Cette CIN est déjà utilisée.
   </div>
   

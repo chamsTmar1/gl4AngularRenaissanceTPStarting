@@ -12,6 +12,7 @@ import { ItemComponent } from './item/item.component';
 import { DefaultImagePipe } from './pipes/default-image.pipe';
 import { EmbaucheComponent } from './embauche/embauche.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MasterDetailsCvComponent } from './master-details-cv/master-details-cv.component';
 
 const routes : Routes = [
   { path : '', component : CvComponent },
@@ -29,7 +30,8 @@ const routes : Routes = [
     ListComponent,
     ItemComponent,
     DefaultImagePipe,
-    EmbaucheComponent
+    EmbaucheComponent,
+    MasterDetailsCvComponent
   ],
   imports: [
     RouterModule.forChild(routes),
