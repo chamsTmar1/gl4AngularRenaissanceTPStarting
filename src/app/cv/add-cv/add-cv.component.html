@@ -13,10 +13,13 @@
   <input type="text" class="form-control" formControlName="age" /> Cin:
   <input type="text" class="form-control" formControlName="cin" />
 
-  <div *ngIf="form.get('cin')?.errors?.['cinNotUnique'] && form.get('cin')?.touched" class="alert alert-danger">
+  <div
+    *ngIf="form.get('cin')?.errors?.['cinNotUnique'] && form.get('cin')?.touched"
+    class="alert alert-danger"
+  >
     Cette CIN est déjà utilisée.
   </div>
-  
+
   <div
     *ngIf="
       form.errors && form.errors['cinFirstCars'] && cin?.touched && age?.touched
@@ -25,11 +28,11 @@
   >
     Cette Cin est invalide
   </div>
-  <div *ngIf =" cin?.touched && form.errors && form.errors['cinFirstTwoNumInvalid']" 
-  class="alert alert-danger"
+  <div
+    *ngIf="cin?.touched && form.errors && form.errors['cinFirstTwoNumInvalid']"
+    class="alert alert-danger"
   >
-  Cette cin n'est pas valide par rapport à  votre age
-
+    Cette cin n'est pas valide par rapport à votre age
   </div>
   Job: <input type="text" class="form-control" formControlName="job" /> Path:
   <input type="text" class="form-control" formControlName="path" />
@@ -39,6 +42,5 @@
   </button>
 </form>
 
-form : {{ form.errors | json}}
-cin : {{cin.errors |json}}
-age : {{age.errors |json}}
+form : {{ form.errors | json }} cin : {{ cin.errors | json }} age :
+{{ age.errors | json }}

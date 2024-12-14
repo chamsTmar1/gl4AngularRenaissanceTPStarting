@@ -41,6 +41,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { SliderComponent } from './rxjs/slider/slider.component';
 import { RainbowDirective } from './directives/raibow/rainbow.directive';
 import { MasterDetailsCvComponent } from './cv/master-details-cv/master-details-cv.component';
+import { InputUserComponent } from './optimizationPattern/user-list/input-user/input-user.component';
+import { ListUserComponent } from './optimizationPattern/user-list/list-user/list-user.component';
+import { CalculatePipe } from './optimizationPattern/user-list/calculate.pipe';
 import { CvModule } from './cv/cv.module';
 import { TodoModule } from './todo/todo.module';
 
@@ -73,6 +76,10 @@ import { TodoModule } from './todo/todo.module';
     RhComponent,
     UserListComponent,
     ProductsComponent,
+    MasterDetailsCvComponent,
+    InputUserComponent,
+    ListUserComponent,
+    CalculatePipe
   ],
   bootstrap: [AppComponent],
   imports: [
