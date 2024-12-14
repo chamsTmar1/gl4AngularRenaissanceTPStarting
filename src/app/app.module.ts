@@ -40,6 +40,7 @@ import { ProductsComponent } from './products/products.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SliderComponent } from './rxjs/slider/slider.component';
 import { RainbowDirective } from './directives/raibow/rainbow.directive';
+import { MasterDetailsCvComponent } from './cv/master-details-cv/master-details-cv.component';
 import { CvModule } from './cv/cv.module';
 import { TodoModule } from './todo/todo.module';
 
@@ -72,6 +73,7 @@ import { TodoModule } from './todo/todo.module';
     RhComponent,
     UserListComponent,
     ProductsComponent,
+    MasterDetailsCvComponent,
   ],
   bootstrap: [AppComponent],
   imports: [
