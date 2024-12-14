@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cv } from '../model/cv';
-import { map, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { API } from '../../../config/api.config';
 
@@ -9,6 +9,10 @@ import { API } from '../../../config/api.config';
 })
 export class CvService {
   private cvs: Cv[] = [];
+  cvToRemove$: BehaviorSubject<Cv | null> = new BehaviorSubject<Cv | null>(
+    null
+  );
+
   /**
    * Le subject permettant de créer le flux des cvs sélectionnés
    */

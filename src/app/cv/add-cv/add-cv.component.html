@@ -25,6 +25,12 @@
   >
     Cette Cin est invalide
   </div>
+  <div *ngIf =" cin?.touched && form.errors && form.errors['cinFirstTwoNumInvalid']" 
+  class="alert alert-danger"
+  >
+  Cette cin n'est pas valide par rapport à  votre age
+
+  </div>
   Job: <input type="text" class="form-control" formControlName="job" /> Path:
   <input type="text" class="form-control" formControlName="path" />
 
@@ -32,4 +38,7 @@
     add cv
   </button>
 </form>
-{{ form.errors | json }}
+
+form : {{ form.errors | json}}
+cin : {{cin.errors |json}}
+age : {{age.errors |json}}
