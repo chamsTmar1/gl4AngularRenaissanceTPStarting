@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTES } from 'src/config/routes.config';
 import { Cv } from '../model/cv';
 import { CONSTANTES } from '../../../config/const.config';
+import { cinAgeValidator } from '../Validators/cin-age-validator';
 
 @Component({
   selector: 'app-add-cv',
@@ -20,24 +21,27 @@ export class AddCvComponent {
     private formBuilder: FormBuilder
   ) {}
 
-  form = this.formBuilder.group({
-    name: ['', Validators.required],
-    firstname: ['', Validators.required],
-    path: [''],
-    job: ['', Validators.required],
-    cin: [
-      '',
-      {
-        validators: [Validators.required, Validators.pattern('[0-9]{8}')],
-      },
-    ],
-    age: [
-      0,
-      {
-        validators: [Validators.required, Validators.min(0)],
-      },
-    ],
-  });
+  form = this.formBuilder.group(
+    {
+      name: ['', Validators.required],
+      firstname: ['', Validators.required],
+      path: [''],
+      job: ['', Validators.required],
+      cin: [
+        '',
+        {
+          validators: [Validators.required, Validators.pattern('[0-9]{8}')],
+        },
+      ],
+      age: [
+        0,
+        {
+          validators: [Validators.required, Validators.min(0)],
+        },
+      ],
+    },
+    { validators: cinAgeValidator() }
+  );
 
   ngOnInit(): void {
     this.form.get('path')?.disable();
